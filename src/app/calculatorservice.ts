@@ -8,7 +8,7 @@ export interface CalcResponse {
 
 @Injectable({ providedIn: 'root' })
 export class CalculatorService {
-  private apiUrl = 'http://localhost:8080/api/calculator/result';
+  private apiUrl = 'https://my-first-web-calculator-backend.onrender.com/api/calculator/result';
 
   constructor(private http: HttpClient) {}
 
