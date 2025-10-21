@@ -1,0 +1,93 @@
+.containsall{
+display:inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border:30px solid black;
+  border-bottom-width: 15px;
+  border-left-width:20px;
+  border-right-width: 20px;
+  padding-left: 0;
+  margin-left: 500px;
+  border-radius: 10px;
+  background-color: black;
+
+}
+.delete{
+  text-align: center;
+  height: 39px;
+}
+.all{
+  margin-top: 5px;
+  background-color: black;
+  display: grid;
+ grid-template-columns:repeat(4, 1fr);
+  gap: 2px;
+  width: 100%;
+}
+button{
+  font-size:medium;
+  font-family: "BBH Sans Hegarty", sans-serif;
+  color: #ececec;
+  border: none;
+  padding: 10px;
+  background-color: #343a40;
+  border-radius: 7px;
+  margin:2px;
+  text-align: center;
+  transition: background-color 0.1s ease;
+
+}
+button:hover{
+  cursor :pointer;
+}
+button:active{
+  transform: translateY(2px);
+  background-color: darkblue;
+}
+.firstcolum{
+  display: flex;
+  flex-direction: column;
+}
+.secondcolum{
+  display: flex;
+  flex-direction: column;
+
+}
+.thirdcolum{
+  display: flex;
+  flex-direction: column;
+}
+.fourthcolum{
+  display: flex;
+  flex-direction: column;
+
+}
+.equalsign{
+  background-color: #05a3dd;
+}
+.search{
+  font-family: "BBH Sans Hegarty", sans-serif;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  height: 55px;
+  width: 99%;
+display: flex;
+
+}
+.output{
+
+  display: flex;
+  width: 100%;
+  background-color: black;
+}
+.calfonts{
+  background-color: black; font-size: large; width: 100% ; height: 100%; margin: 0; padding: 0; color: white; text-align: center;justify-content: center;
+  display: flex;
+  align-content: center;
+  font-family: "BBH Sans Hegarty", sans-serif;
+}
+
+

@@ -1,0 +1,48 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=BBH+Sans+Hegarty&display=swap');
+</style>
+<title>calculator</title>
+
+<div class="containsall">
+  <div class="calculatortitle" style="width: 100%; height: 57px; margin: 0; padding:0; " >
+  <p class="calfonts">Calculator</p>
+  </div>
+  <div class="output">
+  <input class ="search" type="text" [value]="display" [innerHTML]="display" readonly >
+  </div>
+  <div class="all">
+
+      <button (click)="press('%')">%</button>
+    <button (click)="clear()">CE</button>
+    <button (click)="clear()">C</button>
+    <button class="delete" (click)="backspace()">&#9003;</button>
+
+    <button (click)="oneoverx()">1/x</button>
+    <button  (click)="press('^2')">x²</button>
+    <button (click)="sqrt()">&radic;x</button>
+    <button (click)="signs('/')">&#247;</button>
+    <button (click)="press('7')">7</button>
+    <button (click)="press('8')">8</button>
+    <button (click)="press('9')">9</button>
+    <button (click)="signs('*')">&#215;</button>
+
+    <button (click)="press('4')">4</button>
+    <button (click)="press('5')">5</button>
+    <button (click)="press('6')">6</button>
+    <button (click)="signs('-')">-</button>
+
+    <button (click)="press('1')">1</button>
+    <button (click)="press('2')">2</button>
+    <button (click)="press('3')">3</button>
+    <button (click)="signs('+')">+</button>
+
+    <button (click)="switchsign()">+/-</button>
+    <button (click)="press('0')" >0</button>
+    <button (click)="press('.')">.</button>
+    <button class="equalsign" (click)="calculate()">=</button>
+
+
+  </div>
+</div>
+
+
