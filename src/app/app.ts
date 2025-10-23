@@ -14,28 +14,30 @@ export class App {
   inner:string='';
   constructor(private calservice: CalculatorService) { }
     sqrt() {
+    /* if the input is empty then dont write the sqrt */
     if(this.display.length == 0){
       return;
     }
       let char: string = this.display.charAt(this.display.length - 1);
       let x: number = this.display.length - 2;
+      /* read the number until an operation*/
       while (x > 0 && !this.exp.includes(this.display.charAt(x))) {
         char = this.display.charAt(x) + char;
         x--;
       }
+      /* add the sqrt sign behind the number*/
       if (char.length > 0 && x>0) {
         this.display = this.display.slice(0, x + 1);
         this.display += "√" + char;
         this.inner = this.display.slice(0,x + 1);
         this.inner += "√" + char;
       }
-      if(x > 0 &&x<this.display.length-1 && !this.exp.includes(this.display.charAt(x))) {
+      /*add * sign */
+     /* if(x > 0 &&x<this.display.length-1 && !this.exp.includes(this.display.charAt(x))) {
         this.display = this.display.slice(0, x+1) + "*" + this.display.slice(x+1,this.display.length);
         return;
-      }
-      if(this.display.length == 0){
-        return;
-      }
+      }*/
+      /*there is no negative sqrt so everytime there is a negative number then we type the sqrt we get the negative of that number sqrt*/
       if(x <= 0){
         if(this.display.charAt(0) == '-'){
           this.display = this.display.slice(0,1) + '√' + this.display.slice(1,this.display.length);
@@ -50,17 +52,21 @@ export class App {
   }
   signs(value:string) {
     if(this.display.length == 0 ){
-      if(this.exp.includes(value) || value =="^2") {
+      /*if the we want to make the next number negative not an operation */
         if(value == "-"){
           this.display+=value;
         }
           return;
-      }
     }
-    if((this.display.charAt(0) == '-'|| this.display.charAt(this.display.length-1) =="-") && value=="-"){
+    if(this.display.length == 1 && this.display.charAt(0) == '-'){
       return;
     }
-    if(value != "-"){
+    /*not puttin 2 negative together*/
+    if((this.display.charAt(this.display.length-1) =="-") && value=="-"){
+      return;
+    }
+    if(value != "-" || this.display.length ==1){
+      /*if 2 operation next of each other we remove the old one */
       if(this.exp.includes(this.display.charAt(this.display.length-1))) {
         this.display = this.display.slice(0,-1);
       }
@@ -71,10 +77,12 @@ export class App {
   switchsign() {
     let char: string = this.display.charAt(this.display.length - 1);
     let x: number = this.display.length - 2;
+    /*to get the whole number*/
     while (x > 0 && this.display.charAt(x) != "+" && this.display.charAt(x) != "-") {
       char = this.display.charAt(x)+ char;
       x--;
     }
+    /*if it is just one number */
     if(x <= 0){
       if(this.display.charAt(0) == '-') {
         this.display = this.display.slice(1);
@@ -86,13 +94,10 @@ export class App {
       }
       return;
     }
+    // switch the signs
     if(this.display.charAt(x) == "+") {
       this.display = this.display.slice(0, x) + "-" + char;
-      if (this.inner.charAt(x + 1) == "s") {
-        this.inner = this.inner.slice(0, x ) + "-sqrt" + char;
-      } else {
         this.inner = this.inner.slice(0, x) + "-" + char;
-      }
     }
     else{
       this.display = this.display.slice(0, x) + "+" + char;
@@ -102,10 +107,12 @@ export class App {
   oneoverx(){
     let char: string = this.display.charAt(this.display.length - 1);
     let x: number = this.display.length - 2;
+    // get the whole number
     while (x > 0 && !this.exp.includes(this.display.charAt(x))) {
       char = this.display.charAt(x) + char;
       x--;
     }
+    // if there is only one number
     if(x <= 0){
       this.display = '1/' + this.display;
       this.inner = '1/' + this.display;
@@ -124,6 +131,7 @@ export class App {
     this.inner = this.inner.slice(0, -1);
   }
   calculate(){
+    // send the expression to the server and get the result to show it
     this.calservice.calculate(this.display).subscribe({
       next:(res:string) => {this.display = res;
       this.inner=res;
